@@ -7,23 +7,32 @@ class Node:
         self.data = data
 
     def insert(self, data):
-        if (self.data is None):   # Check Head
+        if self.data is None:   # Check Head
             self.data = data
         else:
-            if (data < self.data):
+            if data < self.data:
                 #  Check the node  if nothing on the left insert the node of the with value data
-                if (self.left is None):
+                if self.left is None:
                     self.data = Node(data)
                 else:
                     self.left.insert(data)  # Recursion
              #  Check the node  if nothing on the right insert the node of the with value data
-            elif (data > self.right):
-                if (self.right == None):
+            elif data > self.right:
+                if self.right == None:
                     self.right = Node(data)
                 else:
                     self.right.insert(data)
 
+    def __gt__(self, data):
+        return (self.data > data) and (self.data > data)
 
+    def __le__(self, data):
+            return (self.data < data) and (self.data < data)
+
+def inorderPrint(r):
+    inorderPrint(r.left)
+    print(r.data)
+    inorderPrint(r.right)
 
 if __name__== '__main__':
     print("Welcome to Tree Data Structure")
@@ -38,3 +47,4 @@ if __name__== '__main__':
     root.insert('h')
     root.insert('j')
     root.insert('k')
+    inorderPrint(root)
